@@ -25,12 +25,7 @@ public class CategoryController {
 	// get the categories list from category repository, and display it by list html
 	@GetMapping("/categories")
 	public String categoryList(Category category, Model model) {
-		List<Category> categories = catRepo.findAll();
-		for(Category cat : categories) {
-			Organization org = orgRepo.findById(cat.getOrgId()).orElseThrow(() -> new IllegalArgumentException("Invalid Entity"));
-			cat.setOrgName(org.getOrgName());
-		}
-		model.addAttribute("categories", categories);
+		getNames(model);
 		return "cat-list";
 	}
 	
@@ -51,7 +46,7 @@ public class CategoryController {
 		}
 		try {
 			catRepo.save(category);
-			model.addAttribute("categories", catRepo.findAll());
+			getNames(model);
 			return "cat-list";
 		}
 		catch(Exception e) {
@@ -83,7 +78,7 @@ public class CategoryController {
 		}
 		try {
 			catRepo.save(category);
-			model.addAttribute("categories", catRepo.findAll());
+			getNames(model);
 			return "cat-list";
 		}
 		catch(Exception e) {
@@ -102,7 +97,7 @@ public class CategoryController {
 				.orElseThrow(() -> new IllegalArgumentException("Invalid category number:" + no));
 		try {
 			catRepo.delete(category);
-			model.addAttribute("categories", catRepo.findAll());
+			getNames(model);
 			return "cat-list";
 		}
 		catch(Exception e) {
@@ -110,5 +105,14 @@ public class CategoryController {
 			model.addAttribute("detail", e.getMessage());
 			return "error";
 		}
+	}
+	
+	private void getNames(Model model) {
+		List<Category> categories = catRepo.findAll();
+		for(Category cat : categories) {
+			Organization org = orgRepo.findById(cat.getOrgId()).orElseThrow(() -> new IllegalArgumentException("Invalid Entity"));
+			cat.setOrgName(org.getOrgName());
+		}
+		model.addAttribute("categories", categories);
 	}
 }

@@ -27,15 +27,7 @@ public class JobController {
 	// get the jobs list from organization repository, and display it by list html
 	@GetMapping("/jobs")
 	public String jobList(Job job, Model model) {
-		List<Job> jobs = jobRepo.findAll();
-		for(Job j : jobs) {
-			Organization org = orgRepo.findById(j.getOrgId()).orElseThrow(() -> new IllegalArgumentException("Invalid Entity"));
-			j.setOrgName(org.getOrgName());
-			
-			Category cat = catRepo.findById(j.getJobCatId()).orElseThrow(() -> new IllegalArgumentException("Invalid Entity"));
-			j.setCatName(cat.getCatName());
-		}
-		model.addAttribute("jobs", jobs);
+		getNames(model);
 		return "job-list";
 	}
 	
@@ -57,7 +49,7 @@ public class JobController {
 		}
 		try {
 			jobRepo.save(job);
-			model.addAttribute("jobs", jobRepo.findAll());
+			getNames(model);
 			return "job-list";
 		}
 		catch(Exception e) {
@@ -90,7 +82,7 @@ public class JobController {
 		}
 		try {
 			jobRepo.save(job);
-			model.addAttribute("jobs", jobRepo.findAll());
+			getNames(model);
 			return "job-list";
 		}
 		catch(Exception e) {
@@ -107,7 +99,19 @@ public class JobController {
 		Job job = jobRepo.findById(no)
 				.orElseThrow(() -> new IllegalArgumentException("Invalid job number:" + no));
 		jobRepo.delete(job);
-		model.addAttribute("jobs", jobRepo.findAll());
+		getNames(model);
 		return "job-list";
+	}
+	
+	private void getNames(Model model) {
+		List<Job> jobs = jobRepo.findAll();
+		for(Job j : jobs) {
+			Organization org = orgRepo.findById(j.getOrgId()).orElseThrow(() -> new IllegalArgumentException("Invalid Entity"));
+			j.setOrgName(org.getOrgName());
+			
+			Category cat = catRepo.findById(j.getJobCatId()).orElseThrow(() -> new IllegalArgumentException("Invalid Entity"));
+			j.setCatName(cat.getCatName());
+		}
+		model.addAttribute("jobs", jobs);
 	}
 }
