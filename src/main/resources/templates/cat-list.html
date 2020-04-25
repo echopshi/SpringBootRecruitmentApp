@@ -54,7 +54,7 @@
 				<th scope="col">Category Code</th>
 				<th scope="col">Category Name</th>
 				<th scope="col">Category Description</th>
-				<th scope="col">Organization Id</th>
+				<th scope="col">Organ Name</th>
 				<th scope="col"></th>
 				<th scope="col"></th>
 			</tr>
@@ -65,7 +65,7 @@
 				<td th:text="${cat.catCode}">Code</td>
 				<td th:text="${cat.catName}">Name</td>
 				<td th:text="${cat.catDesc}">Description</td>
-				<td th:text="${cat.orgId}">Organization</td>
+				<td th:text="${cat.orgName}">Organization</td>
 				<td><a class="btn btn-info" th:href="@{/category/edit/{id}(id=${cat.jobCatId})}">Update</a></td>
 				<td><a class="btn btn-danger" th:href="@{/category/delete/{id}(id=${cat.jobCatId})}">Delete</a></td>
 			</tr>

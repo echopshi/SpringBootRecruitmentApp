@@ -49,6 +49,12 @@ public class Job {
 	@Column(name="jobcatid")
 	private int jobCatId;
 	
+	@Column(name="orgname")
+	private String orgName;
+	
+	@Column(name="catname")
+	private String catName;
+	
 	public Job() {
 		super();
 	}
@@ -115,6 +121,22 @@ public class Job {
 
 	public void setJobCatId(int jobCatId) {
 		this.jobCatId = jobCatId;
+	}
+
+	public String getOrgName() {
+		return orgName;
+	}
+
+	public void setOrgName(String orgName) {
+		this.orgName = orgName;
+	}
+
+	public String getCatName() {
+		return catName;
+	}
+
+	public void setCatName(String jobcatName) {
+		this.catName = jobcatName;
 	}
 	
 	

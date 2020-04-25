@@ -32,7 +32,9 @@ public class Category {
 	
 	@Column(name="orgid")
 	private int orgId;
-	
+
+	@Column(name="orgname")
+	private String orgName;
 
 	public Category() {
 		super();
@@ -76,6 +78,14 @@ public class Category {
 
 	public void setOrgId(int orgId) {
 		this.orgId = orgId;
+	}
+
+	public String getOrgName() {
+		return orgName;
+	}
+
+	public void setOrgName(String orgName) {
+		this.orgName = orgName;
 	}
 	
 	

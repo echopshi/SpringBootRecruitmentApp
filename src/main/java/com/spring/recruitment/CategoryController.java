@@ -1,4 +1,6 @@
 package com.spring.recruitment;
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +25,12 @@ public class CategoryController {
 	// get the categories list from category repository, and display it by list html
 	@GetMapping("/categories")
 	public String categoryList(Category category, Model model) {
-		model.addAttribute("categories", catRepo.findAll());
+		List<Category> categories = catRepo.findAll();
+		for(Category cat : categories) {
+			Organization org = orgRepo.findById(cat.getOrgId()).orElseThrow(() -> new IllegalArgumentException("Invalid Entity"));
+			cat.setOrgName(org.getOrgName());
+		}
+		model.addAttribute("categories", categories);
 		return "cat-list";
 	}
 	
@@ -61,6 +68,7 @@ public class CategoryController {
 		Category category = catRepo.findById(no)
 				.orElseThrow(() -> new IllegalArgumentException("Invalid category number:" + no));
 		model.addAttribute("category", category);
+		model.addAttribute("organizations", orgRepo.findAll());
 		return "cat-update";
 	}
 

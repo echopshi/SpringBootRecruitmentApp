@@ -1,4 +1,6 @@
 package com.spring.recruitment;
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +27,15 @@ public class JobController {
 	// get the jobs list from organization repository, and display it by list html
 	@GetMapping("/jobs")
 	public String jobList(Job job, Model model) {
-		model.addAttribute("jobs", jobRepo.findAll());
+		List<Job> jobs = jobRepo.findAll();
+		for(Job j : jobs) {
+			Organization org = orgRepo.findById(j.getOrgId()).orElseThrow(() -> new IllegalArgumentException("Invalid Entity"));
+			j.setOrgName(org.getOrgName());
+			
+			Category cat = catRepo.findById(j.getJobCatId()).orElseThrow(() -> new IllegalArgumentException("Invalid Entity"));
+			j.setCatName(cat.getCatName());
+		}
+		model.addAttribute("jobs", jobs);
 		return "job-list";
 	}
 	
@@ -64,6 +74,8 @@ public class JobController {
 		Job job = jobRepo.findById(no)
 				.orElseThrow(() -> new IllegalArgumentException("Invalid job number:" + no));
 		model.addAttribute("job", job);
+		model.addAttribute("organizations", orgRepo.findAll());
+		model.addAttribute("categories", catRepo.findAll());
 		return "job-update";
 	}
 

@@ -94,13 +94,17 @@
 		<div class="form-row">
 		<div class="col form-group">
 		<label for="orgId">Organization Id</label> 
-		<input class="form-control" type="text" th:field="*{orgId}" id="orgId" placeholder="">
+		<select th:field="*{orgId}" class="custom-select mb-3">
+			<option th:each="org:${organizations}" th:value="${org.orgId}" th:text="${org.orgName}"/>
+		</select>
 		<span class="errorMsg" th:if="${#fields.hasErrors('orgId')}" th:errors="*{orgId}"></span>
 		</div>
 		
 		<div class="col form-group">
 		<label for="jobCatId">Category Id</label> 
-		<input class="form-control" type="text" th:field="*{jobCatId}" id="jobCatId" placeholder="">
+		<select th:field="*{jobCatId}" class="custom-select mb-3">
+			<option th:each="cat:${categories}" th:value="${cat.jobCatId}" th:text="${cat.catName}"/>
+		</select>
 		<span class="errorMsg" th:if="${#fields.hasErrors('jobCatId')}" th:errors="*{jobCatId}"></span>
 		</div>
 		</div>

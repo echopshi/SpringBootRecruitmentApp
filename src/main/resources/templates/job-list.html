@@ -56,8 +56,8 @@
 				<th scope="col">Job Description</th>
 				<th scope="col">Publish Date</th>
 				<th scope="col"># of Vacancy</th>
-				<th scope="col">Organization Id</th>
-				<th scope="col">Category Id</th>
+				<th scope="col">Organ Name</th>
+				<th scope="col">Category Name</th>
 				<th scope="col"></th>
 				<th scope="col"></th>
 			</tr>
@@ -70,8 +70,8 @@
 				<td th:text="${job.jobDesc}">Description</td>
 				<td th:text="${job.pubDate}">Publish Date</td>
 				<td th:text="${job.numVacancy}"># of Vacancy</td>
-				<td th:text="${job.orgId}">Organization Id</td>
-				<td th:text="${job.jobCatId}">Category Id</td>
+				<td th:text="${job.orgName}">Organization</td>
+				<td th:text="${job.catName}">Category</td>
 				<td><a class="btn btn-info" th:href="@{/job/edit/{id}(id=${job.jobId})}">Update</a></td>
 				<td><a class="btn btn-danger" th:href="@{/job/delete/{id}(id=${job.jobId})}">Delete</a></td>
 			</tr>
