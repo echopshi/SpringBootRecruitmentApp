@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<link href="../static/css/main.css" th:href="@{/css/main.css}" rel="stylesheet" />
+<!--import bootstrap -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<title>Job List</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
+  <a class="navbar-brand" href="/">Recruitment Agency App</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/">Index</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/organizations">Organ List</a>
+      </li>
+      <li class="nav-item"> 
+        <a class="nav-link" href="/organization/add">Add New Organ</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/categories">Category List</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/category/add">Add New Category</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/jobs">Job List</a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="/job/add">Add New Job</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<main role="main" class="text-center marignTop">
+<div class="row">
+<div class="col-lg-1"></div>
+<div class="col-lg-10">
+<h2 class="text-center mt-3">Job List</h2>
+	<table class="table table-bordered">
+		<thead class="thead-dark">
+			<tr>
+				<th scope="col">Job Id</th>
+				<th scope="col">Job Code</th>
+				<th scope="col">Job Name</th>
+				<th scope="col">Job Description</th>
+				<th scope="col">Publish Date</th>
+				<th scope="col"># of Vacancy</th>
+				<th scope="col">Organization Id</th>
+				<th scope="col">Category Id</th>
+				<th scope="col"></th>
+				<th scope="col"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="job:${jobs}">
+				<td scope="row" th:text="${job.jobId}">Id</td>
+				<td th:text="${job.jobCode}">Code</td>
+				<td th:text="${job.jobName}">Name</td>
+				<td th:text="${job.jobDesc}">Description</td>
+				<td th:text="${job.pubDate}">Publish Date</td>
+				<td th:text="${job.numVacancy}"># of Vacancy</td>
+				<td th:text="${job.orgId}">Organization Id</td>
+				<td th:text="${job.jobCatId}">Category Id</td>
+				<td><a class="btn btn-info" th:href="@{/job/edit/{id}(id=${job.jobId})}">Update</a></td>
+				<td><a class="btn btn-danger" th:href="@{/job/delete/{id}(id=${job.jobId})}">Delete</a></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<div class="col-lg-1"></div>
+</div>
+<p class="mt-5 mb-3 text-muted text-center"> &copy; Hang (Anna) Li - https://github.com/echopshi </p>
+</main>
+</body>
+</html>

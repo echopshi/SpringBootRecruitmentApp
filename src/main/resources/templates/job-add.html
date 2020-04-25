@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<link href="../static/css/main.css" th:href="@{/css/main.css}" rel="stylesheet" />
+<!--import bootstrap -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<title>Add Job</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
+  <a class="navbar-brand" href="/">Recruitment Agency App</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/">Index</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/organizations">Organ List</a>
+      </li>
+      <li class="nav-item"> 
+        <a class="nav-link" href="/organization/add">Add New Organ</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/categories">Category List</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/category/add">Add New Category</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/jobs">Job List</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/job/add">Add New Job</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<main role="main" class="text-center marignTop">
+<div class="row">
+<div class="col-lg-3"></div>
+<div class="col-lg-6">
+<h2 class="text-center mt-3">Add Job Form</h2>
+<div class="jumbotron my-6">
+	<form action="#" th:action="@{/job/add}" th:object="${job}"
+		method="post">
+		
+		<div class="form-row">
+		<div class="col form-group">
+		<label for="jobCode">Job Code</label>
+		<input class="form-control" type="text" th:field="*{jobCode}" id="jobCode" placeholder="Job Code">
+		<span class="errorMsg" th:if="${#fields.hasErrors('jobCode')}" th:errors="*{jobCode}"></span>
+		</div>
+		
+		<div class="col form-group">
+		<label for="jobName">Job Name</label>
+		<input class="form-control" type="text" th:field="*{jobName}" id="jobName" placeholder="Job Name">
+		<span class="errorMsg" th:if="${#fields.hasErrors('jobName')}" th:errors="*{jobName}"></span>
+		</div>
+		</div>
+		
+		<div class="form-group">
+		<label for="jobDesc">Job Description</label> 
+		<textarea rows="4" class="form-control" th:field="*{jobDesc}" id="jobDesc" placeholder="Job Description"></textarea>
+		<span class="errorMsg" th:if="${#fields.hasErrors('jobDesc')}" th:errors="*{jobDesc}"></span>
+		</div>
+		
+		<div class="form-row">
+		<div class="col form-group">
+		<label for="pubDate">Publish Date</label> 
+		<input class="form-control" type="text" th:field="*{pubDate}" id="pubDate" placeholder="yyyy-mm-dd">
+		<span class="errorMsg" th:if="${#fields.hasErrors('pubDate')}" th:errors="*{pubDate}"></span>
+		</div>
+		
+		<div class="col form-group">
+		<label for="numVacancy"># of Vacancy</label> 
+		<input class="form-control" type="text" th:field="*{numVacancy}" id="numVacancy" placeholder="">
+		<span class="errorMsg" th:if="${#fields.hasErrors('numVacancy')}" th:errors="*{numVacancy}"></span>
+		</div>
+		</div>
+		
+		<div class="form-group">
+		<label for="orgId">Organization Id</label> 
+		<div class="row">
+		<div class="col-lg-8">
+		<select th:field="*{orgId}" class="custom-select mb-3">
+			<option th:each="org:${organizations}" th:value="${org.orgId}" th:text="${org.orgName}"/>
+		</select>
+		</div>
+		<div class="col-lg-4">
+		<a class="btn btn-info" href="/organization/add">Add New Organization</a>
+		</div>
+		</div>
+		<span class="errorMsg" th:if="${#fields.hasErrors('orgId')}" th:errors="*{orgId}"></span>
+		</div>
+		
+		<div class="form-group mb-5">
+		<label for="jobCatId">Category Id</label> 
+		<div class="row">
+		<div class="col-lg-8">
+		<select th:field="*{jobCatId}" class="custom-select mb-3">
+			<option th:each="cat:${categories}" th:value="${cat.jobCatId}" th:text="${cat.catName}"/>
+		</select>
+		</div>
+		<div class="col-lg-4">
+		<a class="btn btn-info" href="/category/add">Add New Category</a>
+		</div>
+		</div>
+		<span class="errorMsg" th:if="${#fields.hasErrors('jobCatId')}" th:errors="*{jobCatId}"></span>
+		</div>
+		
+		<div class="form-group">
+		<input class="btn btn-primary btn-block" type="submit" value="Add Job">
+		</div>
+	</form>
+</div>
+</div>
+<div class="col-lg-3"></div>
+</div>
+<p class="mt-5 mb-3 text-muted text-center"> &copy; Hang (Anna) Li - https://github.com/echopshi </p>
+</main>
+</body>
+</html>

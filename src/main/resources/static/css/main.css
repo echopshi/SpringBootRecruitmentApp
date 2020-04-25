@@ -1,0 +1,117 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: white;
+}
+
+.header{
+	font-size:28px;	
+}
+
+.mainPage {
+  margin-right: auto;
+  margin-left: auto;
+  width: 980px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.indexLink {
+  width: 100%;
+  max-width: 330px;
+  margin: auto;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+  border-radius: 8px;
+  box-shadow: 4px 4px 4px 4px #999999;
+}
+
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.box { 
+	background-color: #fff; 
+	border-radius: 8px; 
+	border: 2px solid #e9ebef; 
+	padding: 30px; 
+	margin-bottom: 20px; 
+}
+	
+.box-title { 
+	margin-bottom: 30px; 
+	text-transform: uppercase; 
+	font-size: 16px; 
+	font-weight: 700; 
+	color: #094bde; 
+	letter-spacing: 2px; 
+}
+	
+.plan-selection { 
+	border-bottom: 2px solid #e9ebef; 
+	padding-bottom: 25px; 
+	margin-bottom: 35px; 
+	}
+	
+.plan-selection:last-child { 
+	border-bottom: 0px; 
+	margin-bottom: 0px; 
+	padding-bottom: 0px; 
+}
+
+.plan-data { 
+	position: relative; 
+}
+
+.plan-data label { 
+	font-size: 20px; 
+	margin-bottom: 15px; 
+	font-weight: 400; 
+}
+
+.plan-text { 
+	padding-left: 35px; 
+}
+	
+.plan-price { 
+	position: absolute; 
+	right: 0px; 
+	color: #094bde; 
+	font-size: 20px; 
+	font-weight: 700; 
+	letter-spacing: -1px; 
+	line-height: 1.5;
+}
+
+.marignTop{
+	margin-top:58px;
+	background-color: white;
+}
+
+.errorMsg{
+	color: red;
+}

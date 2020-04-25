@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<link href="../static/css/main.css" th:href="@{/css/main.css}" rel="stylesheet" />
+<!--import bootstrap -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<title>Organization list</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
+  <a class="navbar-brand" href="/">Recruitment Agency App</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/">Index</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/organizations">Organ List</a>
+      </li>
+      <li class="nav-item"> 
+        <a class="nav-link" href="/organization/add">Add New Organ</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/categories">Category List</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/category/add">Add New Category</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/jobs">Job List</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/job/add">Add New Job</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<main role="main" class="text-center marignTop">
+<div class="row">
+<div class="col-lg-1"></div>
+<div class="col-lg-10">
+<h2 class="text-center mt-3">Organization List</h2>
+	<table class="table table-bordered">
+		<thead class="thead-dark">
+			<tr>
+				<th scope="col">Id</th>
+				<th scope="col">Name</th>
+				<th scope="col">Address</th>
+				<th scope="col">Postal Code</th>
+				<th scope="col">Phone No</th>
+				<th scope="col">Email</th>
+				<th scope="col">Website</th>
+				<th scope="col"></th>
+				<th scope="col"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="org:${organizations}">
+				<th scope="row" th:text="${org.orgId}">Id</th>
+				<td th:text="${org.orgName}">Name</td>
+				<td th:text="${org.address}">Address</td>
+				<td th:text="${org.postalCode}">Postal Code</td>
+				<td th:text="${org.phoneNo}">Phone No</td>
+				<td th:text="${org.email}">Email</td>
+				<td th:text="${org.website}">Website</td>
+				<td>
+				<a class="btn btn-info" th:href="@{/organization/edit/{id}(id=${org.orgId})}">Update</a>
+				</td>
+				<td>
+				<a class="btn btn-danger" th:href="@{/organization/delete/{id}(id=${org.orgId})}">Delete</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+<div class="col-lg-1"></div>
+</div>
+<p class="mt-5 mb-3 text-muted text-center"> &copy; Hang (Anna) Li - https://github.com/echopshi </p>
+</main>
+</body>
+</html>
